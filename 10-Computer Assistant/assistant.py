@@ -1,26 +1,17 @@
+import pyttsx3
+import speech_recognition as sr #pip install speechrecognition
 import datetime
-import os
 import psutil
 import pyautogui
 import pyjokes
-import pyttsx3
 import pywhatkit
 import requests
-import smtplib
-import speech_recognition as sr #pip install speechrecognition
 import time as ti
+from time import sleep
 import webbrowser as we
-from email.message import EmailMessage
 import os
 import subprocess
 import sys
-import yagmail
-#from newsapi import NewsApiClient
-#from secrets import senderemail, password
-from time import sleep
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
-import smtplib
 #pip install py3-tts
 
 user = "Lo-an"
@@ -42,7 +33,7 @@ engine.setProperty("voice", "com.apple.eloquence.en-US.Eddy")
 #         engine.runAndWait()
 #         engine.stop()
 def output(audio):
-    # print(audio) # For printing out the output
+    print(audio) # For printing out the output
     engine.say(audio)
     engine.runAndWait()
 
@@ -59,12 +50,6 @@ def inputCommand():
         r.pause_threshold = .5
         try:
             query = r.recognize_google(r.listen(source), language="en-EN")
-        # except sr.UnknownValueError:
-        #     print("Google Speech Recognition could not understand the audio.")
-        # except sr.RequestError:
-        #     print("Could not request results from Google Speech Recognition service.")
-        # except Exception as ex:
-        #     print("Error during recognition:", ex)
         except Exception as e:
             output("Say that again Please...")
     print(query)
@@ -174,7 +159,7 @@ while True:
         pyautogui.screenshot(str(ti.time()) + ".png").show()
 
     elif "cpu" in query:
-        output(f"Cpu is at {str(psutil.cpu_percent())}")
+        output(f"Cpu is at {str(psutil.cpu_percent())} percent")
 
     elif "offline" in query:
         hour = datetime.datetime.now().hour
